@@ -468,7 +468,8 @@ def use_module(module, all_trigger):
                             if prompt != "update": after_commands(filename, install_location)
 
                         print_status("Running updatedb to tidy everything up.")
-                        subprocess.Popen("updatedb", shell=True).wait()
+                        if ostype is not "OSX":
+                            subprocess.Popen("updatedb", shell=True).wait()
 
                     if not os.path.isdir(install_location):
                         print_error("The tool was not found in the install location. Try running install first!")
@@ -598,7 +599,8 @@ def use_module(module, all_trigger):
                         after_commands(filename, install_location)
 
                     print_status("Running updatedb to tidy everything up.")
-                    subprocess.Popen("updatedb", shell=True).wait()
+                    if ostype is not "OSX":
+                        subprocess.Popen("updatedb", shell=True).wait()
 
             # if we update all we need to break out until finished
             if int(all_trigger) == 1 or int(all_trigger) == 2:

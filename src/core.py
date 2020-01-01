@@ -257,6 +257,9 @@ def exit_ptf():
 # this is the main handler to check what distribution we are using
 # if it can't find it, will default to manual install base
 def profile_os():
+    if platform.system() == "Darwin":
+        return "OSX"
+
     # if we are running a debian variant
     if os.path.isfile("/usr/bin/apt-get"):
         return "DEBIAN"
